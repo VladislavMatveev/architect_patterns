@@ -14,9 +14,4 @@ public class MoveTest {
 
         Assertions.assertEquals(newPosition, Coords.Plus(position, velocity));
     }
-
-    @Test
-    void checkMovable_getPosition() {
-        //TODO
-    }
 }
