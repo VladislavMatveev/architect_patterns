@@ -7,7 +7,7 @@ import ru.otus.game.interfaces.IRotable;
 public class Rotate {
     private IRotable rotable;
 
-    public void Excute() {
+    public void Execute() {
         this.rotable.setAngular(
             this.rotable.getAngular() + this.rotable.getAngularVelocity()
         );
