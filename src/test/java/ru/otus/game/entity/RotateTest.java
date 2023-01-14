@@ -1,6 +1,7 @@
-package homework2;
+package ru.otus.game.entity;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.otus.game.interfaces.IRotable;
@@ -9,29 +10,37 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 
 public class RotateTest {
 
+    private IRotable rotableMock;
+
+    @BeforeEach
+    public void setUp() {
+        rotableMock = Mockito.mock(IRotable.class);
+    }
+
     @Test
     void checkGetAngularException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.when(rotableMock.getAngular())
                 .thenThrow(RuntimeException.class);
 
-        Assertions.assertThrows(RuntimeException.class, rotableMock::getAngular);
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
 
     @Test
     void checkGetAngularVelocityException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.when(rotableMock.getAngularVelocity())
                 .thenThrow(RuntimeException.class);
 
-        Assertions.assertThrows(RuntimeException.class, rotableMock::getAngularVelocity);
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
+
     @Test
     void checkSetAngularException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.doThrow(RuntimeException.class)
                 .when(rotableMock).setAngular(anyDouble());
 
-        Assertions.assertThrows(RuntimeException.class, () -> rotableMock.setAngular(anyDouble()));
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
 }
