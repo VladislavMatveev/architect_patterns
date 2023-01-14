@@ -1,4 +1,4 @@
-package homework2;
+package ru.otus.game.entity;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,8 @@ public class RotateTest {
         Mockito.when(rotableMock.getAngular())
                 .thenThrow(RuntimeException.class);
 
-        Assertions.assertThrows(RuntimeException.class, rotableMock::getAngular);
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
 
     @Test
@@ -24,14 +25,17 @@ public class RotateTest {
         Mockito.when(rotableMock.getAngularVelocity())
                 .thenThrow(RuntimeException.class);
 
-        Assertions.assertThrows(RuntimeException.class, rotableMock::getAngularVelocity);
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
+
     @Test
     void checkSetAngularException() {
         IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.doThrow(RuntimeException.class)
                 .when(rotableMock).setAngular(anyDouble());
 
-        Assertions.assertThrows(RuntimeException.class, () -> rotableMock.setAngular(anyDouble()));
+        Rotate rotate = new Rotate(rotableMock);
+        Assertions.assertThrows(RuntimeException.class, rotate::Execute);
     }
 }
