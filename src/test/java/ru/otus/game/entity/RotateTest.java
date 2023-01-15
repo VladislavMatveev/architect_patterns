@@ -1,6 +1,7 @@
 package ru.otus.game.entity;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.otus.game.interfaces.IRotable;
@@ -9,9 +10,15 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 
 public class RotateTest {
 
+    private IRotable rotableMock;
+
+    @BeforeEach
+    public void setUp() {
+        rotableMock = Mockito.mock(IRotable.class);
+    }
+
     @Test
     void checkGetAngularException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.when(rotableMock.getAngular())
                 .thenThrow(RuntimeException.class);
 
@@ -21,7 +28,6 @@ public class RotateTest {
 
     @Test
     void checkGetAngularVelocityException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.when(rotableMock.getAngularVelocity())
                 .thenThrow(RuntimeException.class);
 
@@ -31,7 +37,6 @@ public class RotateTest {
 
     @Test
     void checkSetAngularException() {
-        IRotable rotableMock = Mockito.mock(IRotable.class);
         Mockito.doThrow(RuntimeException.class)
                 .when(rotableMock).setAngular(anyDouble());
 
